@@ -392,10 +392,11 @@ select.f__field option{background:var(--night);color:var(--tx)}
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
     margin-inline:0;scroll-padding-inline:var(--mx)}
   .case__stage::-webkit-scrollbar{display:none}
-  .case__stage .ph{flex:0 0 84vw;scroll-snap-align:center;margin:0}
+  /* visi rail kadrai VIENODO dydžio: 78vw x 4:5, cover kirpimas */
+  .case__stage .ph{flex:0 0 78vw;aspect-ratio:4/5;scroll-snap-align:center;margin:0}
+  .case__stage .ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:auto}
   .case__inset{transform:none;box-shadow:none}
   .case__t2,.case__t3{margin-top:0}
-  .case__main img{aspect-ratio:4/3}
   .obj--bleed img{height:min(66vh,540px)}
   .obj__cap--over{bottom:22px}
 
