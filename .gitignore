@@ -1,0 +1,8 @@
+.claude/
+assets/
+fs-server.js
+tools-verify-fit.js
+qa.html
+PLAN.md
+*.bak
+.DS_Store

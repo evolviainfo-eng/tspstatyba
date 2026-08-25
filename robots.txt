@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /qa.html
+Disallow: /assets/
+
+Sitemap: https://tspstatyba.lt/sitemap.xml
