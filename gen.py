@@ -32,7 +32,7 @@ SERVICES = [
         "gal": [
             ("w2-a-900.webp", "Svetainė su medinių lentelių siena ir koridorius po vidaus apdailos darbų"),
             ("w2-b-900.webp", "Vonios kambarys su marmuro imitacijos plytelėmis ir laisvai stovinčia vonia"),
-            ("w2-c-900.webp", "Lubos su linijiniais šviestuvais ir akmens plokštės sienos apdaila"),
+            ("w2-c-900.webp", "Vonios kambarys su stiklo dušo kabina, marmuro grindimis ir linijiniais lubų šviestuvais"),
         ],
     },
     {
@@ -120,7 +120,7 @@ SERVICES = [
         "gal": [
             ("proc-1400.webp", "Medinės stogo konstrukcijos montavimas ant mūrinių sienų"),
             ("w3-b-1000.webp", "Erdvi patalpa su mediniais laiptais ir naujomis grindimis"),
-            ("w2-c-900.webp", "Lubos su linijiniais šviestuvais ir akmens plokštės sienos apdaila"),
+            ("w2-c-900.webp", "Vonios kambarys su stiklo dušo kabina, marmuro grindimis ir linijiniais lubų šviestuvais"),
         ],
     },
 ]
