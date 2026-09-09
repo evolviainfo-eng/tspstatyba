@@ -380,7 +380,7 @@ select.f__field{appearance:none;-webkit-appearance:none;cursor:pointer}
 
 @media (max-width:899px){
   .intro__grid{grid-template-columns:1fr;gap:26px}
-  .intro__media{max-width:min(420px,74vw)}
+  .intro__media{max-width:min(460px,100%);margin-inline:auto}
   .works__head{align-items:flex-start}
 
   .case{padding-bottom:0}
@@ -406,7 +406,7 @@ select.f__field{appearance:none;-webkit-appearance:none;cursor:pointer}
   .obj__cap--over{bottom:20px}
 
   .proc__grid{grid-template-columns:1fr;gap:30px}
-  .proc__media{max-width:min(440px,80vw)}
+  .proc__media{max-width:min(480px,100%);margin-inline:auto}
   .proc__step{grid-template-columns:auto 1fr;gap:4px 14px}
   .proc__step h3{grid-column:2}
   .proc__step p{grid-column:2}
