@@ -384,16 +384,22 @@ select.f__field{appearance:none;-webkit-appearance:none;cursor:pointer}
   .works__head{align-items:flex-start}
 
   .case{padding-bottom:0}
+  /* swipe rail'as lieka, bet be `mandatory` snap: būtent jis gaudydavo vertikalų
+     mostą ir slinkimas jausdavosi lipnus. `proximity` tik švelniai pritraukia. */
   .case__stage,.case__stage--tri{
-    display:flex;overflow-x:auto;gap:10px;scroll-snap-type:x mandatory;
+    display:flex;overflow-x:auto;gap:10px;
+    scroll-snap-type:x proximity;overscroll-behavior-x:contain;
     -webkit-overflow-scrolling:touch;scrollbar-width:none;
     margin-inline:calc(-1 * var(--mx));padding-inline:var(--mx);
     scroll-padding-inline:var(--mx)}
   .case__stage::-webkit-scrollbar{display:none}
-  /* kadrai lygiuojasi į tą pačią paraštę kaip tekstas, tad nė vienas nebūna nustumtas */
   .case__stage .ph{flex:0 0 calc(100vw - 2 * var(--mx) - 26px);aspect-ratio:4/5;
     scroll-snap-align:start;margin:0}
   .case__stage .ph img{width:100%;height:100%;object-fit:cover;aspect-ratio:auto}
+  /* vieno kadro blokas rail'o nereikalauja */
+  .case__stage--solo{display:block;overflow:visible;margin-inline:0;padding-inline:0}
+  .case__stage--solo .ph{width:100%;aspect-ratio:3/2;height:auto}
+  .case__stage--solo .ph img{height:100%;aspect-ratio:auto}
   .case__inset{transform:none;box-shadow:none}
   .case__t2,.case__t3{margin-top:0}
   .obj--bleed img{height:min(56vh,460px)}
