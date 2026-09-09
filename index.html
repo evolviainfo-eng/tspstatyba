@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>TSP Statyba — statybos, apdailos ir renovacijos darbai Šiauliuose</title>
-<meta name="description" content="MB „TSP Statyba“ — vidaus ir lauko apdaila, klinkerio klijavimas, šiltinimas ir renovacija Šiauliuose. Tavo statybų partneris: +370 639 94290.">
-<meta name="theme-color" content="#14171A">
+<title>TSP Statyba · statybos, apdailos ir renovacijos darbai Šiauliuose</title>
+<meta name="description" content="MB „TSP Statyba“: vidaus ir lauko apdaila, klinkerio klijavimas, šiltinimas ir renovacija Šiauliuose. Tavo statybų partneris. +370 639 94290.">
+<meta name="theme-color" content="#ffffff">
 <link rel="canonical" href="https://tspstatyba.lt/">
 <link rel="icon" href="img/favicon.png" sizes="48x48">
 <link rel="apple-touch-icon" href="img/apple-touch-icon.png">
@@ -13,8 +13,8 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="lt_LT">
 <meta property="og:site_name" content="TSP Statyba">
-<meta property="og:title" content="TSP Statyba — statybos, apdailos ir renovacijos darbai Šiauliuose">
-<meta property="og:description" content="Vidaus ir lauko apdaila, klinkerio klijavimas, šiltinimas ir renovacija Šiauliuose ir regione.">
+<meta property="og:title" content="TSP Statyba · statybos, apdailos ir renovacijos darbai Šiauliuose">
+<meta property="og:description" content="Vidaus ir lauko apdaila, klinkeris, šiltinimas ir renovacija Šiauliuose ir regione.">
 <meta property="og:url" content="https://tspstatyba.lt/">
 <meta property="og:image" content="https://tspstatyba.lt/img/og.jpg">
 <meta property="og:image:width" content="1200">
@@ -23,11 +23,11 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="img/hero-2048.webp"
       imagesrcset="img/hero-1600.webp 1600w, img/hero-2048.webp 2048w"
       imagesizes="100vw" fetchpriority="high" media="(min-width:760px)">
-<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/main.css?v=20260909">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness",
@@ -43,24 +43,26 @@
 <a class="skip" href="#main">Pereiti prie turinio</a>
 
 <header class="nav" id="nav">
-  <div class="nav__in">
-    <a class="nav__logo" href="/" aria-label="TSP Statyba — į puslapio pradžią">
-      <img src="img/logo-nav-light.png" alt="TSP Statyba" width="49" height="34">
+  <div class="nav__in wrap">
+    <a class="nav__logo" href="/" aria-label="TSP Statyba, į puslapio pradžią">
+      <img src="img/logo-nav-dark.png" alt="TSP Statyba" width="148" height="102">
     </a>
-    <nav class="nav__links" aria-label="Pagrindinis meniu">
+    <button class="nav__burger" id="burger" type="button" aria-expanded="false" aria-controls="navlinks" aria-label="Atidaryti meniu"><span></span></button>
+    <nav class="nav__links" id="navlinks" aria-label="Pagrindinis meniu">
       <a href="#darbai" class="nav__d">Darbai</a>
       <a href="#paslaugos" class="nav__d">Paslaugos</a>
       <a href="#procesas" class="nav__d">Kaip dirbame</a>
+      <a href="#naujienos" class="nav__d">Naujienos</a>
       <a href="#kontaktai" class="nav__d">Kontaktai</a>
       <a href="tel:+37063994290" class="nav__tel tnum">+370 639 94290</a>
-      <a href="#kontaktai" class="nav__cta btn btn--sm">Sąmata</a>
+      <a href="#kontaktai" class="nav__cta btn btn--sm">Gauti pasiūlymą</a>
     </nav>
   </div>
 </header>
 
 <main id="main">
 
-  <!-- 1 — HERO -->
+  <!-- 1 · HERO -->
   <section class="hero" id="hero">
     <div class="hero__media">
       <picture>
@@ -70,330 +72,413 @@
         <img src="img/hero-2048.webp"
              srcset="img/hero-1600.webp 1600w, img/hero-2048.webp 2048w"
              sizes="100vw" width="2048" height="1152" fetchpriority="high" decoding="async"
-             alt="Užbaigtas klinkerio fasado namas su terasa ir sutvarkyta aplinka Šiaulių rajone">
+             alt="Vienaukštis namas su baltu tinku, tamsaus klinkerio kolonomis ir dengta terasa">
       </picture>
     </div>
     <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__in">
-      <h1 class="display" data-reveal>Statybos ir apdailos<br>darbai Šiauliuose</h1>
-      <p class="hero__sub" data-reveal data-delay="90">Vidaus ir lauko apdaila, klinkeris, šiltinimas ir renovacija Šiauliuose ir regione.</p>
-      <div class="hero__cta" data-reveal data-delay="180">
-        <a class="btn" href="#kontaktai">Gauti sąmatą</a>
-        <a class="tlink tnum" href="tel:+37063994290">+370 639 94290</a>
+      <h1 data-reveal>Statybos ir apdailos darbai Šiauliuose</h1>
+      <p class="hero__sub" data-reveal data-delay="80">Vidaus ir lauko apdaila, klinkeris, šiltinimas ir renovacija Šiauliuose ir regione.</p>
+      <div class="hero__cta" data-reveal data-delay="160">
+        <a class="btn" href="#kontaktai">Gauti pasiūlymą</a>
       </div>
     </div>
   </section>
 
-  <!-- 2 — ĮŽANGA -->
-  <section class="intro" id="apie">
+  <!-- 2 · ĮŽANGA -->
+  <section class="sect" id="apie">
     <div class="wrap intro__grid">
-      <div class="intro__media" data-settle>
-        <img class="ar45" src="img/intro-1000.webp" srcset="img/intro-700.webp 700w, img/intro-1000.webp 1000w, img/intro-1400.webp 1400w" sizes="(min-width:900px) 34vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Klinkerio ir medžio apdailos fasadas su plokščiu stogu, baigtas objektas">
+      <div class="intro__media" data-reveal>
+        <img src="img/intro-1000.webp" srcset="img/intro-700.webp 700w, img/intro-1000.webp 1000w, img/intro-1400.webp 1400w" sizes="(min-width:900px) 34vw, 74vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Dviaukštis namas: tinkuotas fasadas, tamsaus klinkerio cokolis ir medinė garažo durų apdaila">
       </div>
       <div class="intro__text">
-        <h2 class="intro__claim" data-reveal>Statome kokybę,<br>kuria galima pasitikėti.</h2>
-        <p class="lede" data-reveal data-delay="80">MB „TSP Statyba“ — Šiaulių statybos ir apdailos komanda, kuriai vadovauja Lukas Stancelis. Imamės darbų nuo atskirų patalpų apdailos iki fasado ar pilnos renovacijos: fasadų šiltinimas, dekoratyvinis tinkavimas, klinkerio klijavimas ir vidaus apdailos darbai iš vienų rankų.</p>
-        <p class="lede lede--2" data-reveal data-delay="130">Kiekvieną objektą perduodame užbaigtą iki galo.</p>
-        <p class="intro__meta" data-reveal data-delay="180">Šiauliai · vadovas Lukas Stancelis · veikia nuo 2024 m.</p>
+        <h2 class="intro__claim" data-reveal>Statome kokybę, kuria galima pasitikėti</h2>
+        <div class="rule" data-reveal data-delay="60"></div>
+        <p class="lede" data-reveal data-delay="90">MB „TSP Statyba“ yra Šiaulių statybos ir apdailos komanda, kuriai vadovauja Lukas Stancelis. Imamės darbų nuo atskirų patalpų apdailos iki fasado ar pilnos renovacijos: fasadų šiltinimas, dekoratyvinis tinkavimas, klinkerio klijavimas ir vidaus apdailos darbai iš vienų rankų.</p>
+        <p class="lede" data-reveal data-delay="130">Kiekvieną objektą perduodame užbaigtą iki galo.</p>
+        <p class="intro__meta" data-reveal data-delay="170">Šiauliai · vadovas Lukas Stancelis · veikia nuo 2024 m.</p>
       </div>
     </div>
   </section>
 
-  <!-- 3 — DARBAI -->
-  <section class="sect works" id="darbai">
+  <!-- 3 · DARBAI -->
+  <section class="sect alt" id="darbai">
     <div class="wrap works__head">
-      <h2 data-reveal>Darbai</h2>
-      <p class="works__note" data-reveal data-delay="80">Atrinkti objektai Šiauliuose ir regione — 2023–2025</p>
+      <div>
+        <h2 data-reveal>Darbai</h2>
+        <div class="rule" data-reveal data-delay="60"></div>
+      </div>
+      <p class="works__note" data-reveal data-delay="90">Atrinkti objektai Šiauliuose ir regione</p>
     </div>
 
-    <div class="objs">
+    <div class="wrap objs">
 
-      <!-- O1 — case: didelis + persidengianti plokštė -->
+      <!-- W1 -->
       <article class="case">
-        <div class="wrap">
-          <header class="case__head" data-reveal>
-            <h3 class="case__title">Betono plytelių fasadas</h3>
-            <span class="case__year tnum">Šiaulių r. — 2025</span>
-          </header>
-          <div class="case__stage">
-            <div data-settle class="ph case__main">
-              <img class="ar32" src="img/o1-a-1800.webp" srcset="img/o1-a-900.webp 900w, img/o1-a-1600.webp 1600w, img/o1-a-1800.webp 1800w" sizes="(min-width:900px) 66vw, 84vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Betono plytelių fasadas ir trinkelėmis klotas kiemas prie vienaukščio namo">
-            </div>
-            <div data-settle data-delay="120" class="ph case__inset">
-              <img class="ar45" src="img/o1-b-1000.webp" srcset="img/o1-b-700.webp 700w, img/o1-b-1000.webp 1000w" sizes="(min-width:900px) 24vw, 84vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Betono plytelių kolona ir suformuotos siūlės prie namo įėjimo">
-            </div>
+        <header class="case__head" data-reveal>
+          <h3 class="case__title">Klinkerio fasadas ir terasa</h3>
+        </header>
+        <div class="case__stage">
+          <div data-reveal class="ph case__main">
+            <img class="ar32" src="img/w1-a-1800.webp" srcset="img/w1-a-900.webp 900w, img/w1-a-1600.webp 1600w, img/w1-a-1800.webp 1800w" sizes="(min-width:900px) 66vw, 78vw" width="1800" height="1200" loading="lazy" decoding="async" alt="Dviaukštis tamsaus klinkerio namas vakare su apšviesta terasa ir įėjimo zona">
+          </div>
+          <div data-reveal data-delay="90" class="ph case__inset">
+            <img class="ar45" src="img/w1-b-1000.webp" srcset="img/w1-b-700.webp 700w, img/w1-b-1000.webp 1000w" sizes="(min-width:900px) 24vw, 78vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Šviesaus mūro fasadas su tamsia plytelių apdaila ir trinkelėmis klotu kiemu">
           </div>
         </div>
       </article>
 
-      <!-- O2 — case: asimetrinis triptikas -->
-      <article class="case">
-        <div class="wrap">
-          <header class="case__head" data-reveal>
-            <h3 class="case__title">Namo vidaus apdaila</h3>
-            <span class="case__year tnum">2025</span>
-          </header>
-          <div class="case__stage case__stage--tri">
-            <div data-settle class="ph case__t1">
-              <img class="ar45" src="img/o2-a-900.webp" srcset="img/o2-a-700.webp 700w, img/o2-a-900.webp 900w" sizes="(min-width:900px) 40vw, 84vw" width="900" height="1125" loading="lazy" decoding="async" alt="Erdvi svetainė su medinių lentelių sienele ir minkštais baldais">
-            </div>
-            <div data-settle data-delay="90" class="ph case__t2">
-              <img class="ar45" src="img/o2-b-900.webp" srcset="img/o2-b-700.webp 700w, img/o2-b-900.webp 900w" sizes="(min-width:900px) 30vw, 84vw" width="900" height="1125" loading="lazy" decoding="async" alt="Virtuvė su integruota technika ir valgomojo zona po apdailos darbų">
-            </div>
-            <div data-settle data-delay="180" class="ph case__t3">
-              <img class="ar45" src="img/o2-c-900.webp" srcset="img/o2-c-700.webp 700w, img/o2-c-900.webp 900w" sizes="(min-width:900px) 24vw, 84vw" width="900" height="1125" loading="lazy" decoding="async" alt="Vonios kambarys su akmens imitacijos plytelėmis ir laisvai stovinčia vonia">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- O3 — full-bleed vizualinė pauzė -->
-      <article class="obj obj--bleed">
-        <div class="obj__media" data-settle>
-          <picture>
-            <source media="(max-width:899px)" srcset="img/o3-m-750.webp 750w, img/o3-m-1100.webp 1100w" sizes="100vw">
-            <img src="img/o3-2048.webp" srcset="img/o3-1600.webp 1600w, img/o3-2048.webp 2048w" sizes="100vw" width="2048" height="853" loading="lazy" decoding="async" alt="Tamsaus klinkerio namas su medžio apdailos akcentu ir terasa">
-          </picture>
-          <p class="obj__cap obj__cap--over">Klinkerio fasadas ir medžio apdaila — 2024</p>
-        </div>
-      </article>
-
-      <!-- O4 — case veidrodinis -->
+      <!-- W2 -->
       <article class="case case--r">
-        <div class="wrap">
-          <header class="case__head" data-reveal>
-            <h3 class="case__title">Fasado apdaila su klinkerio akcentais</h3>
-            <span class="case__year tnum">2024</span>
-          </header>
-          <div class="case__stage">
-            <div data-settle class="ph case__main">
-              <img class="ar32" src="img/o4-b-1800.webp" srcset="img/o4-b-900.webp 900w, img/o4-b-1600.webp 1600w, img/o4-b-1800.webp 1800w" sizes="(min-width:900px) 66vw, 84vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Baigtas dviaukščio namo fasadas su dideliais langais ir klinkerio plokštuma">
-            </div>
-            <div data-settle data-delay="120" class="ph case__inset">
-              <img class="ar45" src="img/o4-a-1000.webp" srcset="img/o4-a-700.webp 700w, img/o4-a-1000.webp 1000w" sizes="(min-width:900px) 24vw, 84vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Dviaukštis namas su baltu tinku ir tamsaus klinkerio akcentais">
-            </div>
+        <header class="case__head" data-reveal>
+          <h3 class="case__title">Vidaus apdaila iki rakto</h3>
+        </header>
+        <div class="case__stage case__stage--tri case__stage--trir">
+          <div data-reveal class="ph case__t1">
+            <img class="ar45" src="img/w2-a-900.webp" srcset="img/w2-a-700.webp 700w, img/w2-a-900.webp 900w" sizes="(min-width:900px) 40vw, 78vw" width="900" height="1125" loading="lazy" decoding="async" alt="Svetainė su medinių lentelių siena ir koridorius po vidaus apdailos darbų">
+          </div>
+          <div data-reveal data-delay="70" class="ph case__t2">
+            <img class="ar45" src="img/w2-b-900.webp" srcset="img/w2-b-700.webp 700w, img/w2-b-900.webp 900w" sizes="(min-width:900px) 30vw, 78vw" width="900" height="1125" loading="lazy" decoding="async" alt="Vonios kambarys su marmuro imitacijos plytelėmis ir laisvai stovinčia vonia">
+          </div>
+          <div data-reveal data-delay="140" class="ph case__t3">
+            <img class="ar45" src="img/w2-c-900.webp" srcset="img/w2-c-700.webp 700w, img/w2-c-900.webp 900w" sizes="(min-width:900px) 24vw, 78vw" width="900" height="1125" loading="lazy" decoding="async" alt="Lubos su linijiniais šviestuvais ir akmens plokštės sienos apdaila">
           </div>
         </div>
       </article>
 
-      <!-- O5 — case: triptikas veidrodinis -->
-      <article class="case case--r">
-        <div class="wrap">
-          <header class="case__head" data-reveal>
-            <h3 class="case__title">Vidaus apdaila iki rakto</h3>
-            <span class="case__year tnum">2023</span>
-          </header>
-          <div class="case__stage case__stage--tri case__stage--trir">
-            <div data-settle class="ph case__t1">
-              <img class="ar45" src="img/o5-a-900.webp" srcset="img/o5-a-700.webp 700w, img/o5-a-900.webp 900w" sizes="(min-width:900px) 40vw, 84vw" width="900" height="1125" loading="lazy" decoding="async" alt="Buto svetainė su dekoratyvine sienos apdaila ir įrengtu apšvietimu">
-            </div>
-            <div data-settle data-delay="90" class="ph case__t2">
-              <img class="ar45" src="img/o5-b-900.webp" srcset="img/o5-b-700.webp 700w, img/o5-b-900.webp 900w" sizes="(min-width:900px) 30vw, 84vw" width="900" height="1125" loading="lazy" decoding="async" alt="Vonios kambarys su tamsaus marmuro plytelėmis ir pakabinama spintele">
-            </div>
-            <div data-settle data-delay="180" class="ph case__t3">
-              <img class="ar45" src="img/o5-c-900.webp" srcset="img/o5-c-700.webp 700w, img/o5-c-900.webp 900w" sizes="(min-width:900px) 24vw, 84vw" width="900" height="1125" loading="lazy" decoding="async" alt="Įrengta virtuvė su šviesiais fasadais ir integruota technika">
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- O6 — case -->
+      <!-- W3 -->
       <article class="case">
-        <div class="wrap">
-          <header class="case__head" data-reveal>
-            <h3 class="case__title">Šviesaus klinkerio fasadas</h3>
-            <span class="case__year tnum">2023</span>
-          </header>
-          <div class="case__stage">
-            <div data-settle class="ph case__main">
-              <img class="ar32" src="img/o6-a-1800.webp" srcset="img/o6-a-900.webp 900w, img/o6-a-1600.webp 1600w, img/o6-a-1800.webp 1800w" sizes="(min-width:900px) 66vw, 84vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Šviesaus klinkerio vienaukštis namas su juodais lietvamzdžiais ir nauja veja">
-            </div>
-            <div data-settle data-delay="120" class="ph case__inset">
-              <img class="ar45" src="img/o6-b-1000.webp" srcset="img/o6-b-700.webp 700w, img/o6-b-1000.webp 1000w" sizes="(min-width:900px) 24vw, 84vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Namo kampas iš arti: klinkerio mūras ir tamsi stogo linija">
-            </div>
+        <header class="case__head" data-reveal>
+          <h3 class="case__title">Vidaus įrengimo darbai</h3>
+        </header>
+        <div class="case__stage">
+          <div data-reveal class="ph case__main">
+            <img class="ar32" src="img/w3-a-1600.webp" srcset="img/w3-a-900.webp 900w, img/w3-a-1600.webp 1600w" sizes="(min-width:900px) 66vw, 78vw" width="1600" height="1067" loading="lazy" decoding="async" alt="Svetainė su medinių lentelių siena, sofa ir dideliu langu po apdailos darbų">
+          </div>
+          <div data-reveal data-delay="90" class="ph case__inset">
+            <img class="ar45" src="img/w3-b-1000.webp" srcset="img/w3-b-700.webp 700w, img/w3-b-1000.webp 1000w" sizes="(min-width:900px) 24vw, 78vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Erdvi patalpa su mediniais laiptais ir naujomis grindimis">
           </div>
         </div>
       </article>
-
-      <!-- O7 — full-bleed finalas -->
-      <article class="obj obj--bleed">
-        <div class="obj__media" data-settle>
-          <picture>
-            <source media="(max-width:899px)" srcset="img/o7-m-750.webp 750w, img/o7-m-1100.webp 1100w" sizes="100vw">
-            <img src="img/o7-2048.webp" srcset="img/o7-1600.webp 1600w, img/o7-2048.webp 2048w" sizes="100vw" width="2048" height="853" loading="lazy" decoding="async" alt="Klinkerio fasado namas su trinkelių aikštele ir akmenų kompozicija kieme">
-          </picture>
-          <p class="obj__cap obj__cap--over">Klinkerio fasadas — 2023</p>
-        </div>
-      </article>
-
     </div>
+
+    <!-- W4 · full-bleed -->
+    <article class="obj obj--bleed" style="margin-block:clamp(44px,5.5vw,84px)">
+      <div class="obj__media" data-reveal>
+        <picture>
+          <source media="(max-width:899px)" srcset="img/w4-m-750.webp 750w, img/w4-m-1100.webp 1100w" sizes="100vw">
+          <img src="img/w4-2048.webp" srcset="img/w4-1600.webp 1600w, img/w4-2048.webp 2048w" sizes="100vw" width="2048" height="853" loading="lazy" decoding="async" alt="Vienaukštis namas su klinkerio cokoliu, tinkuotu fasadu ir plačiais stogo išsikišimais">
+        </picture>
+        <p class="obj__cap--over">Fasado apdaila ir mūro darbai</p>
+      </div>
+    </article>
+
+    <div class="wrap objs">
+      <!-- W5 -->
+      <article class="case">
+        <header class="case__head" data-reveal>
+          <h3 class="case__title">Mūro ir tinko fasadas</h3>
+        </header>
+        <div class="case__stage case__stage--solo">
+          <div data-reveal class="ph case__main">
+            <img class="ar32" src="img/w5-2048.webp" srcset="img/w5-900.webp 900w, img/w5-1400.webp 1400w, img/w5-2048.webp 2048w" sizes="(min-width:900px) 92vw, 78vw" width="2048" height="1365" loading="lazy" decoding="async" alt="Vienaukštis namas su mūro ir tinko fasadu, trinkelių taku ir sutvarkyta veja">
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- W6 · full-bleed finalas -->
+    <article class="obj obj--bleed" style="margin-top:clamp(44px,5.5vw,84px)">
+      <div class="obj__media" data-reveal>
+        <picture>
+          <source media="(max-width:899px)" srcset="img/o3-m-750.webp 750w, img/o3-m-1100.webp 1100w" sizes="100vw">
+          <img src="img/o3-2048.webp" srcset="img/o3-1600.webp 1600w, img/o3-2048.webp 2048w" sizes="100vw" width="2048" height="853" loading="lazy" decoding="async" alt="Tamsaus klinkerio namas su medžio apdailos akcentu ir terasa">
+        </picture>
+        <p class="obj__cap--over">Klinkerio fasadas ir medžio apdaila · 2024</p>
+      </div>
+    </article>
 
     <div class="wrap">
       <div class="works__cta">
-        <p data-reveal>Turite panašų objektą?<br>Atsiųskite nuotrauką ar aprašymą — įvertinsime.</p>
-        <a class="btn" href="#kontaktai" data-reveal data-delay="80">Gauti sąmatą</a>
+        <p data-reveal>Turite panašų objektą? Atsiųskite nuotrauką ar aprašymą, įvertinsime.</p>
+        <a class="btn" href="#kontaktai" data-reveal data-delay="80">Gauti pasiūlymą</a>
       </div>
     </div>
   </section>
 
-  <!-- 4 — PASLAUGOS — išsiplečiančios plokštės -->
-  <section class="svc" id="paslaugos">
-    <div class="wrap svc__head">
-      <h2 data-reveal>Ką darome</h2>
-      <p class="svc__note" data-reveal data-delay="80">Keturios sritys, viena komanda — nuo atskiro etapo iki viso objekto.</p>
-    </div>
+  <!-- 4 · PASLAUGOS -->
+  <section class="sect" id="paslaugos">
+    <div class="wrap">
+      <div class="sect__head">
+        <h2 data-reveal>Ką darome</h2>
+        <div class="rule" data-reveal data-delay="60"></div>
+        <p data-reveal data-delay="90">Keturios sritys, viena komanda: nuo atskiro etapo iki viso objekto.</p>
+      </div>
 
-    <div class="panels" id="panels">
-      <article class="panel is-open" data-panel>
-        <img src="img/sv-vidaus-1000.webp" srcset="img/sv-vidaus-700.webp 700w, img/sv-vidaus-1000.webp 1000w, img/sv-vidaus-1400.webp 1400w" sizes="(min-width:900px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Įrengta svetainė po vidaus apdailos darbų: dekoratyvinė siena, medinės grindys, apšvietimas">
-        <div class="panel__body">
-          <h3 class="panel__name">Vidaus apdaila</h3>
-          <p class="panel__desc">Glaistymas, dažymas, plytelių klijavimas, grindų ir lubų įrengimas — iki rakto.</p>
-        </div>
-      </article>
+      <div class="svc__grid">
+        <article class="svc__item" data-reveal>
+          <a class="svc__tile" href="/paslaugos/vidaus-apdaila/" aria-label="Vidaus apdaila, plačiau apie paslaugą">
+            <img src="img/sv-vidaus-1000.webp" srcset="img/sv-vidaus-700.webp 700w, img/sv-vidaus-1000.webp 1000w, img/sv-vidaus-1400.webp 1400w" sizes="(min-width:1181px) 23vw, (min-width:761px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Įrengta svetainė po vidaus apdailos darbų su dekoratyvine siena ir apšvietimu">
+            <span class="svc__label">Vidaus apdaila</span>
+          </a>
+          <p class="svc__desc">Glaistymas, dažymas, plytelių klijavimas, grindų ir lubų įrengimas iki rakto.</p>
+          <a class="svc__more" href="/paslaugos/vidaus-apdaila/">Plačiau</a>
+        </article>
 
-      <article class="panel" data-panel>
-        <img src="img/sv-klinkeris-1000.webp" srcset="img/sv-klinkeris-700.webp 700w, img/sv-klinkeris-1000.webp 1000w, img/sv-klinkeris-1400.webp 1400w" sizes="(min-width:900px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Šviesaus klinkerio fasadas su tamsiais langais ir sutvarkyta aplinka">
-        <div class="panel__body">
-          <h3 class="panel__name">Fasadai ir klinkeris</h3>
-          <p class="panel__desc">Klinkerio klijavimas, siūlių formavimas, fasadų apdailos darbai.</p>
-        </div>
-      </article>
+        <article class="svc__item" data-reveal data-delay="70">
+          <a class="svc__tile" href="/paslaugos/fasadai-ir-klinkeris/" aria-label="Fasadai ir klinkeris, plačiau apie paslaugą">
+            <img src="img/sv-klinkeris-1000.webp" srcset="img/sv-klinkeris-700.webp 700w, img/sv-klinkeris-1000.webp 1000w, img/sv-klinkeris-1400.webp 1400w" sizes="(min-width:1181px) 23vw, (min-width:761px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Šviesaus klinkerio fasadas su tamsiais langais ir sutvarkyta aplinka">
+            <span class="svc__label">Fasadai ir klinkeris</span>
+          </a>
+          <p class="svc__desc">Klinkerio klijavimas, siūlių formavimas, fasadų apdailos darbai.</p>
+          <a class="svc__more" href="/paslaugos/fasadai-ir-klinkeris/">Plačiau</a>
+        </article>
 
-      <article class="panel" data-panel>
-        <img src="img/sv-siltinimas-1000.webp" srcset="img/sv-siltinimas-700.webp 700w, img/sv-siltinimas-1000.webp 1000w, img/sv-siltinimas-1400.webp 1400w" sizes="(min-width:900px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Dekoratyvinio tinko faktūra iš arti ant apšiltinto fasado">
-        <div class="panel__body">
-          <h3 class="panel__name">Šiltinimas</h3>
-          <p class="panel__desc">Fasadų šiltinimas ir dekoratyvinis tinkavimas — šilta ir tvarkinga.</p>
-        </div>
-      </article>
+        <article class="svc__item" data-reveal data-delay="140">
+          <a class="svc__tile" href="/paslaugos/siltinimas/" aria-label="Šiltinimas, plačiau apie paslaugą">
+            <img src="img/sv-siltinimas-1000.webp" srcset="img/sv-siltinimas-700.webp 700w, img/sv-siltinimas-1000.webp 1000w, img/sv-siltinimas-1400.webp 1400w" sizes="(min-width:1181px) 23vw, (min-width:761px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Dekoratyvinio tinko faktūra iš arti ant apšiltinto fasado">
+            <span class="svc__label">Šiltinimas</span>
+          </a>
+          <p class="svc__desc">Fasadų šiltinimas ir dekoratyvinis tinkavimas, šilta ir tvarkinga.</p>
+          <a class="svc__more" href="/paslaugos/siltinimas/">Plačiau</a>
+        </article>
 
-      <article class="panel" data-panel>
-        <img src="img/sv-renovacija-1000.webp" srcset="img/sv-renovacija-700.webp 700w, img/sv-renovacija-1000.webp 1000w, img/sv-renovacija-1400.webp 1400w" sizes="(min-width:900px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Mūro darbai statomame name — blokelių sienos ir angos">
-        <div class="panel__body">
-          <h3 class="panel__name">Renovacija ir statyba</h3>
-          <p class="panel__desc">Patalpų atnaujinimas ir bendrieji statybos darbai — etapais arba visas objektas.</p>
-        </div>
-      </article>
+        <article class="svc__item" data-reveal data-delay="210">
+          <a class="svc__tile" href="/paslaugos/renovacija-ir-statyba/" aria-label="Renovacija ir statyba, plačiau apie paslaugą">
+            <img src="img/sv-renovacija-1000.webp" srcset="img/sv-renovacija-700.webp 700w, img/sv-renovacija-1000.webp 1000w, img/sv-renovacija-1400.webp 1400w" sizes="(min-width:1181px) 23vw, (min-width:761px) 46vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Mūro darbai statomame name: blokelių sienos ir angos">
+            <span class="svc__label">Renovacija ir statyba</span>
+          </a>
+          <p class="svc__desc">Patalpų atnaujinimas ir bendrieji statybos darbai etapais arba visas objektas.</p>
+          <a class="svc__more" href="/paslaugos/renovacija-ir-statyba/">Plačiau</a>
+        </article>
+      </div>
     </div>
   </section>
 
-  <!-- 5 — PROCESAS -->
-  <section class="proc" id="procesas">
+  <!-- 5 · PROCESAS -->
+  <section class="sect alt" id="procesas">
     <div class="wrap proc__grid">
-      <div class="proc__media" data-settle>
-        <img src="img/proc-1000.webp" srcset="img/proc-700.webp 700w, img/proc-1000.webp 1000w, img/proc-1400.webp 1400w" sizes="(min-width:900px) 40vw, 100vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Medinės stogo konstrukcijos montavimas ant mūrinių sienų statomame name">
+      <div class="proc__media" data-reveal>
+        <img src="img/proc-1000.webp" srcset="img/proc-700.webp 700w, img/proc-1000.webp 1000w, img/proc-1400.webp 1400w" sizes="(min-width:900px) 36vw, 80vw" width="1000" height="1250" loading="lazy" decoding="async" alt="Medinės stogo konstrukcijos montavimas ant mūrinių sienų statomame name">
       </div>
       <div class="proc__body">
         <h2 data-reveal>Kaip dirbame</h2>
+        <div class="rule" data-reveal data-delay="60"></div>
         <ol class="proc__list">
-          <li class="proc__step" data-reveal><h3>Užklausa</h3><p>Parašykite arba paskambinkite — aptariame, ko reikia.</p></li>
-          <li class="proc__step" data-reveal data-delay="60"><h3>Apžiūra objekte</h3><p>Atvykstame, apmatuojame ir įvertiname darbų apimtį vietoje.</p></li>
-          <li class="proc__step" data-reveal data-delay="120"><h3>Sąmata</h3><p>Pateikiame aiškią sąmatą su darbais ir medžiagomis.</p></li>
-          <li class="proc__step" data-reveal data-delay="180"><h3>Darbai</h3><p>Dirbame sutartu grafiku ir deriname eigą su jumis.</p></li>
-          <li class="proc__step" data-reveal data-delay="240"><h3>Perdavimas</h3><p>Perduodame užbaigtą objektą ir liekame pasiekiami klausimams.</p></li>
+          <li class="proc__step" data-reveal><span class="proc__num tnum">01</span><h3>Užklausa</h3><p>Parašykite arba paskambinkite, aptariame, ko reikia.</p></li>
+          <li class="proc__step" data-reveal data-delay="60"><span class="proc__num tnum">02</span><h3>Apžiūra objekte</h3><p>Atvykstame, apmatuojame ir įvertiname darbų apimtį vietoje.</p></li>
+          <li class="proc__step" data-reveal data-delay="120"><span class="proc__num tnum">03</span><h3>Sąmata</h3><p>Pateikiame aiškią sąmatą su darbais ir medžiagomis.</p></li>
+          <li class="proc__step" data-reveal data-delay="180"><span class="proc__num tnum">04</span><h3>Darbai</h3><p>Dirbame sutartu grafiku ir deriname eigą su jumis.</p></li>
+          <li class="proc__step" data-reveal data-delay="240"><span class="proc__num tnum">05</span><h3>Perdavimas</h3><p>Perduodame užbaigtą objektą ir liekame pasiekiami klausimams.</p></li>
         </ol>
         <div class="proc__foot" data-reveal data-delay="280">
-          <a class="tlink tnum" href="tel:+37063994290">+370 639 94290</a>
+          <a class="tnum" href="tel:+37063994290">+370 639 94290</a>
           <span>Šiauliai ir aplinkinis regionas</span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6 — ATSILIEPIMAI -->
+  <!-- 6 · ATSILIEPIMAI -->
   <section class="sect" id="atsiliepimai">
     <div class="wrap">
-      <div class="revs">
-        <figure class="rev rev--lead" data-reveal>
-          <blockquote><p>Esame labai patenkinti atliktais fasado darbais ir klinkerio klijavimu. Viskas buvo padaryta kokybiškai, tvarkingai ir laiku, kaip buvo sutarta. Darbai vyko sklandžiai, o bendravimas buvo malonus ir profesionalus.</p></blockquote>
-          <figcaption class="rev__src">— Armandas M., Facebook</figcaption>
-        </figure>
-        <div class="revs__col">
-          <figure class="rev rev--sm" data-reveal data-delay="80">
-            <blockquote><p>Vyrukai dirba tvarkingai ir gana greit atliko vidaus apdailos darbus. Nereikėjo baksnot pirštu, pabaigus patys apsižiūrėjo ir pašalino trūkumus.</p></blockquote>
-            <figcaption class="rev__src">— Lukas K., Facebook</figcaption>
-          </figure>
-          <figure class="rev rev--sm" data-reveal data-delay="140">
-            <blockquote><p>Šaunūs meistrai. Greitai ir kokybiškai atliko fasado darbus.</p></blockquote>
-            <figcaption class="rev__src">— Paulius B., Facebook</figcaption>
-          </figure>
-          <figure class="rev rev--sm" data-reveal data-delay="200">
-            <blockquote><p>Kokybiškai ir atsakingai atlikti darbai.</p></blockquote>
-            <figcaption class="rev__src">— Tomas G., Facebook</figcaption>
-          </figure>
-        </div>
+      <div class="sect__head">
+        <h2 data-reveal>Atsiliepimai</h2>
+        <div class="rule" data-reveal data-delay="60"></div>
       </div>
-      <p class="revs__agg">Facebook — 90 % rekomenduoja (8 atsiliepimai) · rekvizitai.vz.lt — 10/10 (4 vertinimai)</p>
+      <div class="revs">
+        <figure class="rev" data-reveal>
+          <blockquote><p>Esame labai patenkinti atliktais fasado darbais ir klinkerio klijavimu. Viskas buvo padaryta kokybiškai, tvarkingai ir laiku, kaip buvo sutarta. Darbai vyko sklandžiai, o bendravimas buvo malonus ir profesionalus.</p></blockquote>
+          <figcaption class="rev__src">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            <span><span class="rev__name">Armandas M.</span> · Facebook</span>
+          </figcaption>
+        </figure>
+        <figure class="rev" data-reveal data-delay="70">
+          <blockquote><p>Vyrukai dirba tvarkingai ir gana greit atliko vidaus apdailos darbus. Nereikėjo baksnot pirštu, pabaigus patys apsižiūrėjo ir pašalino trūkumus.</p></blockquote>
+          <figcaption class="rev__src">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            <span><span class="rev__name">Lukas K.</span> · Facebook</span>
+          </figcaption>
+        </figure>
+        <figure class="rev" data-reveal data-delay="140">
+          <blockquote><p>Šaunūs meistrai. Greitai ir kokybiškai atliko fasado darbus.</p></blockquote>
+          <figcaption class="rev__src">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            <span><span class="rev__name">Paulius B.</span> · Facebook</span>
+          </figcaption>
+        </figure>
+        <figure class="rev" data-reveal data-delay="210">
+          <blockquote><p>Kokybiškai ir atsakingai atlikti darbai.</p></blockquote>
+          <figcaption class="rev__src">
+            <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>
+            <span><span class="rev__name">Tomas G.</span> · Facebook</span>
+          </figcaption>
+        </figure>
+      </div>
+      <p class="revs__agg" data-reveal>Facebook: 90 % rekomenduoja (8 atsiliepimai) · rekvizitai.vz.lt: 10/10 (4 vertinimai)</p>
     </div>
   </section>
 
-  <!-- 7 — KONTAKTAI -->
-  <section class="contact" id="kontaktai">
-    <div class="wrap sect">
-      <div class="contact__grid">
-        <div class="contact__info">
-          <h2 data-reveal>Aptarkime jūsų objektą</h2>
-          <a class="contact__tel tnum" href="tel:+37063994290">+370 639 94290</a>
-          <p class="contact__meta">
-            <a href="mailto:tavostatybupartneris@gmail.com">tavostatybupartneris@gmail.com</a><br>
-            Šatrijos g. 20-1, LT-76230 Šiauliai<br>
-            <a href="https://www.facebook.com/TSPstatyba" target="_blank" rel="noopener">Facebook</a> ·
-            <a href="https://www.instagram.com/tavo_statybu_partneris/" target="_blank" rel="noopener">Instagram</a>
+  <!-- 7 · NAUJIENOS -->
+  <section class="sect alt" id="naujienos">
+    <div class="wrap news__grid">
+      <div class="news__text">
+        <h2 data-reveal>Naujienos iš Facebook</h2>
+        <div class="rule" data-reveal data-delay="60"></div>
+        <p class="lede" data-reveal data-delay="90">Objektų nuotraukas ir darbų eigą skelbiame savo Facebook puslapyje. Šalia matote naujausius įrašus, o visą srautą rasite paspaudę mygtuką.</p>
+        <div class="news__cta" data-reveal data-delay="130">
+          <a class="btn btn--ghost" href="https://www.facebook.com/TSPstatyba/" target="_blank" rel="noopener">Sekti Facebook</a>
+        </div>
+        <div class="news__page" id="newsFeed" data-reveal data-delay="170">
+          <div class="fb-page"
+               data-href="https://www.facebook.com/TSPstatyba/"
+               data-tabs=""
+               data-width="400"
+               data-height="70"
+               data-small-header="true"
+               data-adapt-container-width="true"
+               data-hide-cover="true"
+               data-show-facepile="false"></div>
+        </div>
+      </div>
+
+      <div class="news__posts">
+<!-- NEWS:START -->
+        <article class="post" data-reveal>
+          <header class="post__head">
+            <img class="post__avatar" src="img/fb-avatar.webp" width="48" height="48" alt="" loading="lazy" decoding="async">
+            <span>
+              <b class="post__name">TSP Statyba</b>
+              <span class="post__meta"><time datetime="2026-08-18">Rugpjūčio 18 d.</time></span>
+            </span>
+          </header>
+          <p class="post__text">Vasaros darbai ir rudens planai. TSP Statyba džiaugiasi vasarą pasitikusi su gausybe darbų, naujų objektų ir, svarbiausia, patenkintais klientais. Nors šiltasis sezonas eina į pabaigą, pasitinkame rudenį su nauja energija ir toliau tęsiame pradėtus darbus.</p>
+          <a class="post__media" href="https://www.facebook.com/100063790592393/posts/1663365282466476" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true">
+            <img src="img/news-1-1400.webp" srcset="img/news-1-700.webp 700w, img/news-1-1000.webp 1000w, img/news-1-1400.webp 1400w" sizes="(min-width:960px) 36vw, 100vw" width="1000" height="667" loading="lazy" decoding="async" alt="Plytų mūro namas su nauju stogu ir plačiais išsikišimais">
+          </a>
+          <p class="post__stats">
+            <span class="post__rx"><span class="rx rx--like"><svg width="10" height="10" viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l.95-4.57.03-.32a1.5 1.5 0 0 0-.44-1.06L13.17 1 6.6 7.59A2 2 0 0 0 6 9v10a2 2 0 0 0 2 2h9a2 2 0 0 0 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></span><span class="tnum">11</span></span>
+            <span class="tnum">2 bendrinimai</span>
           </p>
+          <p class="post__actions">
+            <a href="https://www.facebook.com/100063790592393/posts/1663365282466476" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg> Žiūrėti Facebook</a>
+          </p>
+        </article>
+        <article class="post" data-reveal data-delay="70">
+          <header class="post__head">
+            <img class="post__avatar" src="img/fb-avatar.webp" width="48" height="48" alt="" loading="lazy" decoding="async">
+            <span>
+              <b class="post__name">TSP Statyba</b>
+              <span class="post__meta"><time datetime="2026-07-29">Liepos 29 d.</time></span>
+            </span>
+          </header>
+          <p class="post__text">Šį kartą kapitalinis.</p>
+          <div class="post__media post__media--video is-paused" data-video>
+            <video src="video/news-2.mp4" poster="img/news-2-700.webp" muted loop playsinline preload="none" width="720" height="480" aria-label="Kadras iš vaizdo įrašo: patalpa po kapitalinio remonto"></video>
+            <span class="post__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <a class="post__cover" href="https://www.facebook.com/100063790592393/posts/1643702937766044" target="_blank" rel="noopener"><span class="vh">Žiūrėti šį įrašą Facebook</span></a>
+          </div>
+          <p class="post__stats">
+            <span class="post__rx"><span class="rx rx--like"><svg width="10" height="10" viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l.95-4.57.03-.32a1.5 1.5 0 0 0-.44-1.06L13.17 1 6.6 7.59A2 2 0 0 0 6 9v10a2 2 0 0 0 2 2h9a2 2 0 0 0 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></span><span class="rx rx--love"><svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span><span class="tnum">42</span></span>
+            <span class="tnum">13 tūkst. peržiūrų · 2 bendrinimai</span>
+          </p>
+          <p class="post__actions">
+            <a href="https://www.facebook.com/100063790592393/posts/1643702937766044" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg> Žiūrėti Facebook</a>
+          </p>
+        </article>
+        <article class="post" data-reveal data-delay="140">
+          <header class="post__head">
+            <img class="post__avatar" src="img/fb-avatar.webp" width="48" height="48" alt="" loading="lazy" decoding="async">
+            <span>
+              <b class="post__name">TSP Statyba</b>
+              <span class="post__meta"><time datetime="2026-06-07">Birželio 7 d.</time></span>
+            </span>
+          </header>
+          <p class="post__text">Ieškote naujų namų? Mes turime puikų pasiūlymą.</p>
+          <div class="post__media post__media--video is-paused" data-video>
+            <video src="video/news-3.mp4" poster="img/news-3-700.webp" muted loop playsinline preload="none" width="720" height="480" aria-label="Kadras iš vaizdo įrašo: įrengto namo vidus"></video>
+            <span class="post__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>
+            <a class="post__cover" href="https://www.facebook.com/100063790592393/posts/1594365792699759" target="_blank" rel="noopener"><span class="vh">Žiūrėti šį įrašą Facebook</span></a>
+          </div>
+          <p class="post__stats">
+            <span class="post__rx"><span class="rx rx--like"><svg width="10" height="10" viewBox="0 0 24 24"><path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l.95-4.57.03-.32a1.5 1.5 0 0 0-.44-1.06L13.17 1 6.6 7.59A2 2 0 0 0 6 9v10a2 2 0 0 0 2 2h9a2 2 0 0 0 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"/></svg></span><span class="rx rx--love"><svg width="10" height="10" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span><span class="tnum">141</span></span>
+            <span class="tnum">43 tūkst. peržiūrų · 10 komentarų · 10 bendrinimų</span>
+          </p>
+          <p class="post__actions">
+            <a href="https://www.facebook.com/100063790592393/posts/1594365792699759" target="_blank" rel="noopener"><svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg> Žiūrėti Facebook</a>
+          </p>
+        </article>
+<!-- NEWS:END -->
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · KONTAKTAI -->
+  <section class="sect" id="kontaktai">
+    <div class="wrap contact__grid">
+      <div class="contact__info">
+        <h2 data-reveal>Aptarkime jūsų objektą</h2>
+        <div class="rule" data-reveal data-delay="60"></div>
+        <a class="contact__tel tnum" href="tel:+37063994290" data-reveal data-delay="90">+370 639 94290</a>
+        <p class="contact__meta" data-reveal data-delay="130">
+          <a href="mailto:tavostatybupartneris@gmail.com">tavostatybupartneris@gmail.com</a><br>
+          Šatrijos g. 20-1, LT-76230 Šiauliai<br>
+          <a href="https://www.facebook.com/TSPstatyba" target="_blank" rel="noopener">Facebook</a> ·
+          <a href="https://www.instagram.com/tavo_statybu_partneris/" target="_blank" rel="noopener">Instagram</a>
+        </p>
+      </div>
+
+      <form class="f" id="form" action="https://formsubmit.co/evolvia.info+tsp@gmail.com" method="POST" enctype="multipart/form-data" novalidate data-reveal data-delay="90">
+        <input type="hidden" name="_subject" value="Užklausa iš tspstatyba">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input class="f__hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="f__row2">
+          <div>
+            <label class="f__label" for="vardas">Vardas</label>
+            <input class="f__field" id="vardas" name="Vardas" type="text" required autocomplete="name" placeholder="Jūsų vardas">
+          </div>
+          <div>
+            <label class="f__label" for="kontaktas">Telefonas arba el. paštas</label>
+            <input class="f__field" id="kontaktas" name="Telefonas arba el. paštas" type="text" required autocomplete="tel" placeholder="+370">
+          </div>
         </div>
 
-        <form class="f" id="form" action="https://formsubmit.co/evolvia.info+tsp@gmail.com" method="POST" enctype="multipart/form-data" novalidate>
-          <input type="hidden" name="_subject" value="Užklausa iš tspstatyba">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="_template" value="table">
-          <input class="f__hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
-
-          <div class="f__row2">
-            <div>
-              <label class="f__label" for="vardas">Vardas</label>
-              <input class="f__field" id="vardas" name="Vardas" type="text" required autocomplete="name" placeholder="Jūsų vardas">
-            </div>
-            <div>
-              <label class="f__label" for="kontaktas">Telefonas arba el. paštas</label>
-              <input class="f__field" id="kontaktas" name="Telefonas arba el. paštas" type="text" required autocomplete="tel" placeholder="+370">
-            </div>
+        <div>
+          <label class="f__label" for="tipas">Darbo tipas</label>
+          <div class="f__selwrap">
+            <select class="f__field" id="tipas" name="Darbo tipas" required>
+              <option value="Vidaus apdaila">Vidaus apdaila</option>
+              <option value="Fasadai ir klinkeris">Fasadai ir klinkeris</option>
+              <option value="Šiltinimas">Šiltinimas</option>
+              <option value="Renovacija ir statyba">Renovacija ir statyba</option>
+              <option value="Kita">Kita</option>
+            </select>
           </div>
+        </div>
 
-          <div>
-            <label class="f__label" for="tipas">Darbo tipas</label>
-            <div class="f__selwrap">
-              <select class="f__field" id="tipas" name="Darbo tipas" required>
-                <option value="Vidaus apdaila">Vidaus apdaila</option>
-                <option value="Fasadai ir klinkeris">Fasadai ir klinkeris</option>
-                <option value="Šiltinimas">Šiltinimas</option>
-                <option value="Renovacija ir statyba">Renovacija ir statyba</option>
-                <option value="Kita">Kita</option>
-              </select>
-            </div>
-          </div>
+        <div>
+          <label class="f__label" for="objektas">Apie objektą</label>
+          <textarea class="f__field" id="objektas" name="Apie objektą" required placeholder="Kur objektas, kokie darbai, kada norėtumėte pradėti?"></textarea>
+        </div>
 
-          <div>
-            <label class="f__label" for="objektas">Apie objektą</label>
-            <textarea class="f__field" id="objektas" name="Apie objektą" required placeholder="Kur objektas, kokie darbai, kada norėtumėte pradėti?"></textarea>
-          </div>
+        <div>
+          <label class="f__label" for="failai">Objekto nuotraukos <span>nebūtina</span></label>
+          <input class="f__field f__file" id="failai" name="attachment" type="file" accept="image/*" multiple>
+        </div>
 
-          <div>
-            <label class="f__label" for="failai">Objekto nuotraukos <span>nebūtina</span></label>
-            <input class="f__field f__file" id="failai" name="attachment" type="file" accept="image/*" multiple>
-          </div>
-
-          <button class="btn btn--wide" type="submit" id="submit">Siųsti užklausą</button>
-          <p class="f__msg" id="formMsg" role="status" aria-live="polite"></p>
-        </form>
-      </div>
+        <button class="btn btn--wide" type="submit" id="submit">Siųsti užklausą</button>
+        <p class="f__msg" id="formMsg" role="status" aria-live="polite"></p>
+      </form>
     </div>
   </section>
 </main>
 
 <footer class="foot">
   <div class="wrap foot__in">
-    <img class="foot__logo" src="img/logo-full-light.png" alt="TSP Statyba — Tavo statybų partneris" width="110" height="84" loading="lazy" decoding="async">
+    <img class="foot__logo" src="img/logo-full-light.png" alt="TSP Statyba, Tavo statybų partneris" width="220" height="168" loading="lazy" decoding="async">
     <div class="foot__cols">
       <p class="foot__txt">
         MB „TSP Statyba“ · Įm. k. 306822009 · PVM kodas LT100017734711<br>
@@ -412,9 +497,11 @@
 
 <div class="callbar" id="callbar">
   <a href="tel:+37063994290">Skambinti</a>
-  <a href="#kontaktai">Gauti sąmatą</a>
+  <a href="#kontaktai">Gauti pasiūlymą</a>
 </div>
 
-<script src="js/main.js" defer></script>
+<div id="fb-root"></div>
+<script src="js/lenis.min.js?v=20260909" defer></script>
+<script src="js/main.js?v=20260909" defer></script>
 </body>
 </html>

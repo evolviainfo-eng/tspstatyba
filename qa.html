@@ -1,32 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head><meta charset="utf-8"><style>html,body{margin:0;padding:0;overflow:hidden;background:#0B141C}iframe{border:0;display:block}</style></head>
+<head><meta charset="utf-8"><style>html,body{margin:0;padding:0;overflow:hidden;background:#fff}iframe{border:0;display:block}</style></head>
 <body>
-<iframe id="f" src="/index.html" width="1440" height="900"></iframe>
+<iframe id="f" width="1440" height="900"></iframe>
 <script>
 const p = new URLSearchParams(location.search);
 const y = parseInt(p.get('y') || '0', 10);
 const w = parseInt(p.get('w') || '1440', 10);
 const h = parseInt(p.get('h') || '900', 10);
 const f = document.getElementById('f');
+f.src = p.get('path') || '/index.html';
 f.width = w; f.height = h;
-f.addEventListener('load', () => {
-  setTimeout(() => {
-    f.contentWindow.scrollTo(0, y);
-    // headless nedispatchina scroll -> IO reveal'ai nesuveikia; kadrui rodome galutinę būseną
-    const d = f.contentDocument;
-    d.documentElement.classList.remove('js');
-    d.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in'));
-    document.title = 'H' + d.body.scrollHeight;
-    if (p.get('probe')) {
-      const st = d.querySelector('.case__stage');
-      const cs = f.contentWindow.getComputedStyle(st);
-      const sw=d.documentElement.scrollWidth; const off = [...d.querySelectorAll('*')].filter(el=>{const r=el.getBoundingClientRect();return r.right>380&&r.right<520&&el.tagName!=='HTML'&&el.tagName!=='BODY';}).slice(0,10)
-        .map(el=>el.tagName+'.'+String(el.className).slice(0,26)+'@'+Math.round(el.getBoundingClientRect().right)+' parentOverflow='+f.contentWindow.getComputedStyle(el.parentElement).overflowX);
-      const div=d.createElement('div');div.textContent='PROBE: sw='+sw+' stage='+cs.display+'/'+cs.overflowX+' || '+off.join(' | ');
-      document.body.appendChild(div);
-    }
-  }, 400);
+f.addEventListener('load', async () => {
+  const d = f.contentDocument;
+  d.documentElement.style.scrollBehavior = 'auto';
+  d.documentElement.classList.remove('js');
+  d.querySelectorAll('[data-reveal]').forEach(el => el.classList.add('is-in'));
+  d.querySelectorAll('img').forEach(i => { i.loading = 'eager'; });
+  await new Promise(r => setTimeout(r, 2500));
+  f.contentWindow.scrollTo(0, y);
+  await new Promise(r => setTimeout(r, 200));
+  document.title = 'H' + d.body.scrollHeight + '|sy' + Math.round(f.contentWindow.scrollY) + '|' +
+    [...d.querySelectorAll('section,footer,.case__stage--solo')].map(x => (x.id || x.className).split(' ')[0] + ':' + Math.round(x.getBoundingClientRect().top + f.contentWindow.scrollY)).join('|');
 });
 </script>
 </body>

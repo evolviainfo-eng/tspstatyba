@@ -1,6 +1,8 @@
 .DS_Store
 .claude/
-assets/
+assets/*
+!assets/news.json
+!assets/news_media.py
 fs-server.js
 tools-verify-fit.js
 PLAN.md

@@ -1,21 +1,15 @@
-/* TSP Statyba — vanilla. PHYSICAL motion personality. No JS => everything visible. */
+/* TSP Statyba. Vanilla. No JS means everything is visible. */
 (function () {
   'use strict';
   var root = document.documentElement;
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var canObserve = 'IntersectionObserver' in window;
 
-  // The hidden state only exists once JS has confirmed it can undo it.
+  /* The hidden state only exists once JS has confirmed it can undo it. */
   if (canObserve && !reduce) root.classList.add('js');
 
-  /* ---------- hero settle ---------- */
-  var hero = document.getElementById('hero');
-  if (hero) requestAnimationFrame(function () {
-    requestAnimationFrame(function () { hero.classList.add('is-in'); });
-  });
-
-  /* ---------- reveal (text/UI) + settle (photos: transform only, never hidden) ---------- */
-  var items = [].slice.call(document.querySelectorAll('[data-reveal],[data-line],[data-settle]'));
+  /* ---------- reveal ---------- */
+  var items = [].slice.call(document.querySelectorAll('[data-reveal]'));
   function show(el) {
     var d = parseInt(el.getAttribute('data-delay') || '0', 10);
     if (d) el.style.transitionDelay = d + 'ms';
@@ -30,10 +24,9 @@
       entries.forEach(function (e) {
         if (e.isIntersecting) { show(e.target); io.unobserve(e.target); }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.08 });
     items.forEach(function (el) { io.observe(el); });
 
-    // Safety net: reveal whatever is already on screen (no blanket show-all).
     var sweep = function () {
       items.forEach(function (el) {
         if (el.classList.contains('is-in')) return;
@@ -44,6 +37,27 @@
     window.addEventListener('load', sweep);
     document.addEventListener('visibilitychange', sweep);
     window.addEventListener('pageshow', sweep);
+    setTimeout(showAll, 2500);
+  }
+
+  /* ---------- sklandus slinkimas (Lenis) ---------- */
+  /* iframe'e nepaleidžiam: qa harnesui reikia tikro programinio scrollTo */
+  var inFrame = window.self !== window.top;
+  var lenis = null;
+  if (window.Lenis && !reduce && !inFrame) {
+    lenis = new Lenis({ lerp: 0.1, smoothWheel: true, syncTouch: false, autoRaf: false });
+    var raf = function (t) { lenis.raf(t); requestAnimationFrame(raf); };
+    requestAnimationFrame(raf);
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var id = a.getAttribute('href');
+      if (id === '#' || id.length < 2) return;
+      var t = document.querySelector(id);
+      if (!t) return;
+      e.preventDefault();
+      lenis.scrollTo(t, { offset: -78 });
+    });
   }
 
   /* ---------- nav state + active link ---------- */
@@ -58,26 +72,32 @@
       ticking = false;
       if (nav) nav.classList.toggle('is-scrolled', window.scrollY > 8);
       var mid = window.scrollY + innerHeight * 0.34, best = -1;
-      targets.forEach(function (t, i) {
-        if (t && t.offsetTop <= mid) best = i;
-      });
+      targets.forEach(function (t, i) { if (t && t.offsetTop <= mid) best = i; });
       links.forEach(function (a, i) { a.classList.toggle('is-active', i === best); });
     });
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
-  /* ---------- services: hovering a panel opens it ---------- */
-  var panels = [].slice.call(document.querySelectorAll('[data-panel]'));
-  panels.forEach(function (p, i) {
-    p.setAttribute('tabindex', '0');
-    function open() {
-      panels.forEach(function (q, k) { q.classList.toggle('is-open', k === i); });
-    }
-    p.addEventListener('mouseenter', open);
-    p.addEventListener('focus', open);
-    p.addEventListener('click', open);
-  });
+  /* ---------- mobile menu ---------- */
+  var burger = document.getElementById('burger');
+  var panel = document.getElementById('navlinks');
+  if (burger && panel) {
+    var setOpen = function (open) {
+      panel.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      burger.setAttribute('aria-label', open ? 'Uždaryti meniu' : 'Atidaryti meniu');
+    };
+    burger.addEventListener('click', function () {
+      setOpen(burger.getAttribute('aria-expanded') !== 'true');
+    });
+    panel.addEventListener('click', function (e) {
+      if (e.target.closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') setOpen(false);
+    });
+  }
 
   /* ---------- mobile call bar hides over the contact section ---------- */
   var bar = document.getElementById('callbar');
@@ -87,6 +107,82 @@
       bar.classList.toggle('is-hidden', es[0].isIntersecting);
     }, { threshold: 0.06 }).observe(contact);
   }
+
+  /* ---------- Facebook page plugin, loaded only when the section comes near ---------- */
+  var feed = document.getElementById('newsFeed');
+  var fallback = document.getElementById('newsFallback');
+  if (feed) {
+    var loaded = false;
+    var rendered = function () { return !!feed.querySelector('.fb-page iframe'); };
+    var fail = function () {
+      if (!fallback || !fallback.hidden || rendered()) return;
+      var plugin = feed.querySelector('.fb-page');
+      if (plugin) plugin.hidden = true;
+      fallback.hidden = false;
+    };
+    var loadFb = function () {
+      if (loaded) return;
+      loaded = true;
+      var s = document.createElement('script');
+      s.async = true; s.defer = true; s.crossOrigin = 'anonymous';
+      s.src = 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&version=v23.0';
+      s.onerror = fail;
+      document.body.appendChild(s);
+      setTimeout(fail, 6000);
+      setTimeout(fail, 12000);
+    };
+    // Stebime visą skiltį, o ne patį rėmelį: nulinio dydžio elementas niekada
+    // nesikerta su viewport'u ir stebėjimas tyliai nieko nedaro.
+    var section = document.getElementById('naujienos') || feed;
+    var near = function () {
+      var r = section.getBoundingClientRect();
+      return r.top < innerHeight + 500 && r.bottom > -500;
+    };
+    var maybeLoad = function () {
+      if (loaded) return;
+      if (near()) { loadFb(); cleanup(); }
+    };
+    function cleanup() {
+      window.removeEventListener('scroll', maybeLoad);
+      window.removeEventListener('resize', maybeLoad);
+    }
+    // IntersectionObserver yra pagrindinis kelias, bet ne vienintelis: scroll
+    // klausytojas su tikru rect'u pagauna tuos atvejus, kai IO tyli.
+    if (canObserve) {
+      new IntersectionObserver(function (es, obs) {
+        if (es[0].isIntersecting) { obs.disconnect(); loadFb(); cleanup(); }
+      }, { rootMargin: '500px 0px' }).observe(section);
+    }
+    window.addEventListener('scroll', maybeLoad, { passive: true });
+    window.addEventListener('resize', maybeLoad);
+    window.addEventListener('load', maybeLoad);
+    window.addEventListener('pageshow', maybeLoad);
+    maybeLoad();
+  }
+
+  /* ---------- naujienų vaizdo įrašai: groja, kai matomi ---------- */
+  var vids = [].slice.call(document.querySelectorAll('[data-video]'));
+  vids.forEach(function (box) {
+    var v = box.querySelector('video');
+    if (!v) return;
+    if (reduce) { box.classList.add('is-paused'); return; }
+    var play = function () {
+      var pr = v.play();
+      if (pr && pr.catch) pr.catch(function () { box.classList.add('is-paused'); });
+    };
+    if (canObserve) {
+      new IntersectionObserver(function (es) {
+        if (es[0].isIntersecting) { v.preload = 'auto'; play(); }
+        else { v.pause(); }
+      }, { threshold: 0.25 }).observe(box);
+    } else {
+      v.preload = 'auto'; play();
+    }
+    v.addEventListener('playing', function () { box.classList.remove('is-paused'); });
+    v.addEventListener('pause', function () {
+      if (!document.hidden) box.classList.add('is-paused');
+    });
+  });
 
   /* ---------- form ---------- */
   var form = document.getElementById('form');
@@ -118,7 +214,7 @@
         msg.textContent = 'Užklausa išsiųsta. Susisieksime artimiausiu metu.';
       }).catch(function () {
         msg.setAttribute('data-state', 'err');
-        msg.textContent = 'Nepavyko išsiųsti — paskambinkite +370 639 94290 arba parašykite el. paštu.';
+        msg.textContent = 'Nepavyko išsiųsti. Paskambinkite +370 639 94290 arba parašykite el. paštu.';
       }).then(function () {
         btn.disabled = false; btn.textContent = label;
       });
