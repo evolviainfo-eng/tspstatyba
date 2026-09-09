@@ -313,7 +313,6 @@ PAGE = '''<!doctype html>
 
 {foot}
 
-<div id="fb-root"></div>
 <script src="/js/lenis.min.js?v=20260909" defer></script>\n<script src="/js/main.js?v=20260909" defer></script>
 </body>
 </html>

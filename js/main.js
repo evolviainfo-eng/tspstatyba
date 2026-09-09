@@ -108,58 +108,6 @@
     }, { threshold: 0.06 }).observe(contact);
   }
 
-  /* ---------- Facebook page plugin, loaded only when the section comes near ---------- */
-  var feed = document.getElementById('newsFeed');
-  var fallback = document.getElementById('newsFallback');
-  if (feed) {
-    var loaded = false;
-    var rendered = function () { return !!feed.querySelector('.fb-page iframe'); };
-    var fail = function () {
-      if (!fallback || !fallback.hidden || rendered()) return;
-      var plugin = feed.querySelector('.fb-page');
-      if (plugin) plugin.hidden = true;
-      fallback.hidden = false;
-    };
-    var loadFb = function () {
-      if (loaded) return;
-      loaded = true;
-      var s = document.createElement('script');
-      s.async = true; s.defer = true; s.crossOrigin = 'anonymous';
-      s.src = 'https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&version=v23.0';
-      s.onerror = fail;
-      document.body.appendChild(s);
-      setTimeout(fail, 6000);
-      setTimeout(fail, 12000);
-    };
-    // Stebime visą skiltį, o ne patį rėmelį: nulinio dydžio elementas niekada
-    // nesikerta su viewport'u ir stebėjimas tyliai nieko nedaro.
-    var section = document.getElementById('naujienos') || feed;
-    var near = function () {
-      var r = section.getBoundingClientRect();
-      return r.top < innerHeight + 500 && r.bottom > -500;
-    };
-    var maybeLoad = function () {
-      if (loaded) return;
-      if (near()) { loadFb(); cleanup(); }
-    };
-    function cleanup() {
-      window.removeEventListener('scroll', maybeLoad);
-      window.removeEventListener('resize', maybeLoad);
-    }
-    // IntersectionObserver yra pagrindinis kelias, bet ne vienintelis: scroll
-    // klausytojas su tikru rect'u pagauna tuos atvejus, kai IO tyli.
-    if (canObserve) {
-      new IntersectionObserver(function (es, obs) {
-        if (es[0].isIntersecting) { obs.disconnect(); loadFb(); cleanup(); }
-      }, { rootMargin: '500px 0px' }).observe(section);
-    }
-    window.addEventListener('scroll', maybeLoad, { passive: true });
-    window.addEventListener('resize', maybeLoad);
-    window.addEventListener('load', maybeLoad);
-    window.addEventListener('pageshow', maybeLoad);
-    maybeLoad();
-  }
-
   /* ---------- naujienų vaizdo įrašai: groja, kai matomi ---------- */
   var vids = [].slice.call(document.querySelectorAll('[data-video]'));
   vids.forEach(function (box) {
