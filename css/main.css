@@ -541,19 +541,13 @@ select.f__field{appearance:none;-webkit-appearance:none;cursor:pointer}
 .post__play svg{fill:var(--accent);margin-left:3px}
 .post__media--video.is-paused .post__play{opacity:1}
 
-/* Facebook stiliaus reakcijų eilutė */
-.post__stats{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  flex-wrap:wrap;padding:12px clamp(18px,1.8vw,22px);
-  font-size:13.5px;color:var(--tx-2)}
-.post__rx{display:inline-flex;align-items:center}
-.rx{width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;
-  justify-content:center;border:2px solid #fff}
-.rx svg{fill:#fff}
-.rx--like{background:#1877f2}
-.rx--love{background:#e0245e;margin-left:-6px}
-.post__rx .tnum{margin-left:7px}
-.post__actions{border-top:1px solid var(--line);padding:10px clamp(18px,1.8vw,22px)}
-.post__actions a{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;
-  font-weight:600;color:var(--tx-2);transition:color var(--t-ui) var(--ease)}
-.post__actions svg{fill:var(--accent);flex:0 0 auto}
-@media (hover:hover) and (pointer:fine){.post__actions a:hover{color:var(--accent)}}
+/* Facebook stiliaus veiksmų juosta, be skaičių */
+.post__actions{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
+  border-top:1px solid var(--line);margin:0 clamp(10px,1vw,14px);padding:4px 0}
+.post__actions a{display:flex;align-items:center;justify-content:center;gap:7px;
+  min-height:40px;padding:0 6px;font-size:14px;font-weight:600;color:var(--tx-2);
+  transition:background-color var(--t-ui) var(--ease),color var(--t-ui) var(--ease)}
+.post__actions svg{flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linejoin:round;stroke-linecap:round}
+@media (hover:hover) and (pointer:fine){.post__actions a:hover{background:var(--bg-alt);color:var(--tx)}}
+@media (max-width:360px){.post__actions a{font-size:13px;gap:5px}}

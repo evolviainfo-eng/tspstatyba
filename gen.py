@@ -319,57 +319,36 @@ PAGE = '''<!doctype html>
 '''
 
 
-FB_SVG = ('<svg width="15" height="15" viewBox="0 0 24 24" aria-hidden="true">'
-          '<path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07C0 18.1 4.39 23.1 10.13 24v-8.44H7.08'
-          'v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.68.24 2.68.24v2.96h-1.51c-1.49 0-1.96.93'
-          '-1.96 1.89v2.26h3.33l-.53 3.49h-2.8V24C19.61 23.1 24 18.1 24 12.07z"/></svg>')
+# Facebook įrašo apačios veiksmai, be skaičių (FB skaičiai keičiasi, statiniai pasentų)
+FB_ACTIONS = (
+    ("Patinka", '<path d="M7 11v9H4a1 1 0 0 1-1-1v-7a1 1 0 0 1 1-1h3zm0 0 4-8a2.5 2.5 0 0 1 2.5 2.5V9h5.2'
+                'a2 2 0 0 1 2 2.3l-1.2 7A2 2 0 0 1 17.5 20H7"/>'),
+    ("Komentuoti", '<path d="M12 3.5c-4.97 0-9 3.53-9 7.88 0 2.3 1.13 4.37 2.93 5.81L5 21l4.2-2.1'
+                   'c.9.24 1.84.36 2.8.36 4.97 0 9-3.53 9-7.88S16.97 3.5 12 3.5z"/>'),
+    ("Bendrinti", '<path d="M13 5.5V9C6.5 9.5 4 13.5 3.5 19c2-3 4.8-4.4 9.5-4.5v3.5l7.5-6.25L13 5.5z"/>'),
+)
 
 
-def _plural(n, one, few, many):
-    if n % 10 == 1 and n % 100 != 11:
-        return "%d %s" % (n, one)
-    if 2 <= n % 10 <= 9 and not 11 <= n % 100 <= 19:
-        return "%d %s" % (n, few)
-    return "%d %s" % (n, many)
-
-
-def _views(n):
-    if n >= 1000:
-        return "%d tūkst. peržiūrų" % round(n / 1000.0)
-    return _plural(n, "peržiūra", "peržiūros", "peržiūrų")
-
-
-RX_LIKE = ('<span class="rx rx--like"><svg width="10" height="10" viewBox="0 0 24 24">'
-           '<path d="M2 21h4V9H2v12zm20-11a2 2 0 0 0-2-2h-6.3l.95-4.57.03-.32a1.5 1.5 0 0 0-.44-1.06'
-           'L13.17 1 6.6 7.59A2 2 0 0 0 6 9v10a2 2 0 0 0 2 2h9a2 2 0 0 0 1.84-1.22l3.02-7.05'
-           'c.09-.23.14-.47.14-.73v-2z"/></svg></span>')
-RX_LOVE = ('<span class="rx rx--love"><svg width="10" height="10" viewBox="0 0 24 24">'
-           '<path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3'
-           'c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5'
-           'c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></span>')
+def _actions(url):
+    return "".join(
+        '            <a href="%s" target="_blank" rel="noopener">'
+        '<svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">%s</svg>%s</a>\n'
+        % (url, icon, label) for label, icon in FB_ACTIONS)
 
 
 def build_news():
     """Įrašo naujausius Facebook įrašus iš assets/news.json į index.html.
-    Atnaujinimas: apify/facebook-posts-scraper -> assets/news.json -> python3 gen.py"""
+    Atnaujinimas: apify/facebook-posts-scraper -> assets/news.json -> python3 gen.py.
+    Tinka bet koks įrašo tipas: su video, su nuotrauka arba vien tekstas."""
     import json
     with open("assets/news.json", encoding="utf-8") as f:
         posts = json.load(f)
     cards = []
     for i, p in enumerate(posts):
-        total = p["like"] + p["love"]
-        rx = RX_LIKE + (RX_LOVE if p["love"] else "")
-        right = []
-        if p.get("views"):
-            right.append(_views(p["views"]))
-        if p.get("comments"):
-            right.append(_plural(p["comments"], "komentaras", "komentarai", "komentarų"))
-        if p.get("shares"):
-            right.append(_plural(p["shares"], "bendrinimas", "bendrinimai", "bendrinimų"))
-
+        img = p.get("img")
         widths = [w for w in (700, 1000, 1400)
-                  if os.path.exists("img/%s-%d.webp" % (p["img"], w))]
-        srcset = ", ".join("img/%s-%d.webp %dw" % (p["img"], w, w) for w in widths)
+                  if img and os.path.exists("img/%s-%d.webp" % (img, w))]
+        srcset = ", ".join("img/%s-%d.webp %dw" % (img, w, w) for w in widths)
 
         if p.get("video"):
             media = ('          <div class="post__media post__media--video is-paused" data-video>\n'
@@ -379,14 +358,16 @@ def build_news():
                      '<svg width="20" height="20" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>\n'
                      '            <a class="post__cover" href="%s" target="_blank" rel="noopener">'
                      '<span class="vh">Žiūrėti šį įrašą Facebook</span></a>\n'
-                     '          </div>\n' % (p["video"], p["img"], p["alt"], p["url"]))
-        else:
+                     '          </div>\n' % (p["video"], img, p["alt"], p["url"]))
+        elif widths:
             media = ('          <a class="post__media" href="%s" target="_blank" rel="noopener" '
                      'tabindex="-1" aria-hidden="true">\n'
                      '            <img src="img/%s-%d.webp" srcset="%s" '
                      'sizes="(min-width:960px) 36vw, 100vw" width="1000" height="667" '
                      'loading="lazy" decoding="async" alt="%s">\n'
-                     '          </a>\n' % (p["url"], p["img"], widths[-1], srcset, p["alt"]))
+                     '          </a>\n' % (p["url"], img, widths[-1], srcset, p["alt"]))
+        else:
+            media = ''
 
         cards.append(
             '        <article class="post" data-reveal%s>\n'
@@ -399,18 +380,12 @@ def build_news():
             '          </header>\n'
             '          <p class="post__text">%s</p>\n'
             '%s'
-            '          <p class="post__stats">\n'
-            '            <span class="post__rx">%s<span class="tnum">%d</span></span>\n'
-            '            <span class="tnum">%s</span>\n'
-            '          </p>\n'
             '          <p class="post__actions">\n'
-            '            <a href="%s" target="_blank" rel="noopener">%s Žiūrėti Facebook</a>\n'
+            '%s'
             '          </p>\n'
             '        </article>' % (
                 ' data-delay="%d"' % (i * 70) if i else '',
-                p["date"], p["label"], p["text"], media,
-                rx, total, " · ".join(right),
-                p["url"], FB_SVG))
+                p["date"], p["label"], p["text"], media, _actions(p["url"])))
     block = "<!-- NEWS:START -->\n" + "\n".join(cards) + "\n<!-- NEWS:END -->"
     with open("index.html", encoding="utf-8") as f:
         html = f.read()
