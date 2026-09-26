@@ -1,6 +1,13 @@
 /* TSP Statyba. Light system, Montserrat, blue accent.
    Motion: reveal only (fade-up). No parallax, no carousels, no moving backgrounds. */
 
+/* Montserrat savame domene: 400–700 kintamas, tik lotynų + lietuviški simboliai (35 KB).
+   Atsarginis Arial su Montserrat metrikomis, kad keičiantis šriftui tekstas nepašoktų. */
+@font-face{font-family:"Montserrat";src:url("../fonts/montserrat-var.woff2") format("woff2");
+  font-weight:400 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Montserrat Fallback";src:local("Arial"),local("ArialMT");
+  size-adjust:111.48%;ascent-override:86.83%;descent-override:22.52%;line-gap-override:0%}
+
 :root{
   --bg:#ffffff;
   --bg-alt:#f5f6f8;
@@ -12,7 +19,7 @@
   --line:#e2e6ea;
   --line-d:rgba(255,255,255,.14);
 
-  --font:"Montserrat",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --font:"Montserrat","Montserrat Fallback",system-ui,-apple-system,"Segoe UI",sans-serif;
 
   --ease:cubic-bezier(.22,.61,.36,1);
   --ease-o:cubic-bezier(.16,1,.3,1);
@@ -147,27 +154,22 @@ h3{font-weight:600;letter-spacing:-.005em}
 .hero__cta{margin-top:30px}
 .hero h1 .w{display:inline-block}
 
-/* Hero intro, vienkartinis: nuotrauka nusėda, antraštė žodis po žodžio, tada tekstas ir mygtukas.
+/* Hero intro, vienkartinis: kadras nusėda, antraštė žodis po žodžio, tada tekstas ir mygtukas.
+   Nuotrauka ir meniu matomi nuo pirmo kadro (tik transform), kad nevėlintų LCP/FCP.
    Paslėpta būsena egzistuoja tik su html.intro (inline skriptas <head>, be reduced-motion). */
 .intro .hero{background:var(--dark)}
-.intro .hero__media{opacity:0;transform:scale(1.08);
-  transition:opacity 1s var(--ease-o),transform 2.4s var(--ease-o)}
-.intro .hero__scrim{opacity:0;transition:opacity 1s var(--ease-o)}
+.intro .hero__media{transform:scale(1.08);transition:transform 2.4s var(--ease-o)}
 .intro .hero h1 .w{opacity:0;transform:translateY(.42em);filter:blur(10px);
   transition:opacity .9s var(--ease-o),transform .9s var(--ease-o),filter .9s var(--ease-o);
-  transition-delay:calc(260ms + var(--i) * 75ms)}
+  transition-delay:calc(120ms + var(--i) * 75ms)}
 .intro .hero__sub,.intro .hero__cta{opacity:0;transform:translateY(16px);
   transition:opacity .8s var(--ease-o),transform .8s var(--ease-o)}
-.intro .hero__sub{transition-delay:720ms}
-.intro .hero__cta{transition-delay:840ms}
-.intro .nav{opacity:0;transform:translateY(-10px);
-  transition:opacity .7s var(--ease-o) .1s,transform .7s var(--ease-o) .1s}
+.intro .hero__sub{transition-delay:580ms}
+.intro .hero__cta{transition-delay:700ms}
 .intro.is-ready .hero__media,
-.intro.is-ready .hero__scrim,
 .intro.is-ready .hero h1 .w,
 .intro.is-ready .hero__sub,
-.intro.is-ready .hero__cta,
-.intro.is-ready .nav{opacity:1;transform:none;filter:none}
+.intro.is-ready .hero__cta{opacity:1;transform:none;filter:none}
 
 /* ---------- intro ---------- */
 .intro__grid{display:grid;grid-template-columns:minmax(0,.66fr) minmax(0,1fr);
