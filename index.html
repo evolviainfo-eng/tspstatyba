@@ -27,7 +27,7 @@
 <link rel="preload" as="image" href="img/hero-2048.webp"
       imagesrcset="img/hero-1600.webp 1600w, img/hero-2048.webp 2048w"
       imagesizes="100vw" fetchpriority="high" media="(min-width:760px)">
-<link rel="stylesheet" href="css/main.css?v=20260909">
+<link rel="stylesheet" href="css/main.css?v=20260926">
 
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"HomeAndConstructionBusiness",
@@ -37,6 +37,27 @@
 "address":{"@type":"PostalAddress","streetAddress":"Šatrijos g. 20-1","addressLocality":"Šiauliai","postalCode":"LT-76230","addressCountry":"LT"},
 "areaServed":"Šiauliai","foundingDate":"2024-06","vatID":"LT100017734711","taxID":"306822009",
 "sameAs":["https://www.facebook.com/TSPstatyba","https://www.instagram.com/tavo_statybu_partneris/"]}
+</script>
+<script>
+/* Hero intro: paslėpta būsena tik kai judesys leidžiamas; rodoma užsikrovus nuotraukai arba po 1,8 s */
+(function(){
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var d=document.documentElement; d.classList.add('intro');
+  var done=0;
+  function go(){
+    if(done++) return;
+    requestAnimationFrame(function(){
+      d.classList.add('is-ready');
+      /* po intro nuimam klases: lieka tik įprasti hero ir meniu stiliai */
+      setTimeout(function(){ d.classList.remove('intro','is-ready'); },3500);
+    });
+  }
+  setTimeout(go,1800);
+  document.addEventListener('DOMContentLoaded',function(){
+    var i=document.querySelector('#hero img'); if(!i) return go();
+    if(i.complete) go(); else { i.addEventListener('load',go); i.addEventListener('error',go); }
+  });
+})();
 </script>
 </head>
 <body>
@@ -77,9 +98,9 @@
     </div>
     <div class="hero__scrim" aria-hidden="true"></div>
     <div class="hero__in">
-      <h1 data-reveal>Statybos ir apdailos darbai Šiauliuose</h1>
-      <p class="hero__sub" data-reveal data-delay="80">Vidaus ir lauko apdaila, klinkeris, šiltinimas ir renovacija Šiauliuose ir regione.</p>
-      <div class="hero__cta" data-reveal data-delay="160">
+      <h1><span class="w" style="--i:0">Statybos</span> <span class="w" style="--i:1">ir</span> <span class="w" style="--i:2">apdailos</span> <span class="w" style="--i:3">darbai</span> <span class="w" style="--i:4">Šiauliuose</span></h1>
+      <p class="hero__sub">Vidaus ir lauko apdaila, klinkeris, šiltinimas ir renovacija Šiauliuose ir regione.</p>
+      <div class="hero__cta">
         <a class="btn" href="#kontaktai">Gauti pasiūlymą</a>
       </div>
     </div>
@@ -481,7 +502,7 @@
   <a href="#kontaktai">Gauti pasiūlymą</a>
 </div>
 
-<script src="js/lenis.min.js?v=20260909" defer></script>
-<script src="js/main.js?v=20260909" defer></script>
+<script src="js/lenis.min.js?v=20260926" defer></script>
+<script src="js/main.js?v=20260926" defer></script>
 </body>
 </html>

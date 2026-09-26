@@ -221,7 +221,7 @@ PAGE = '''<!doctype html>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="/img/{heroimg}" imagesrcset="{herosrcset}" imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="/css/main.css?v=20260909">
+<link rel="stylesheet" href="/css/main.css?v=20260926">
 
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"Service","name":"{name}",
@@ -313,7 +313,7 @@ PAGE = '''<!doctype html>
 
 {foot}
 
-<script src="/js/lenis.min.js?v=20260909" defer></script>\n<script src="/js/main.js?v=20260909" defer></script>
+<script src="/js/lenis.min.js?v=20260926" defer></script>\n<script src="/js/main.js?v=20260926" defer></script>
 </body>
 </html>
 '''
