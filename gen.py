@@ -222,7 +222,7 @@ PAGE = '''<!doctype html>
 
 <link rel="preload" href="/fonts/montserrat-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" href="/img/{heroimg}" imagesrcset="{herosrcset}" imagesizes="100vw" fetchpriority="high">
-<link rel="stylesheet" href="/css/main.css?v=20260926b">
+<link rel="stylesheet" href="/css/main.css?v=20261117">
 
 <script type="application/ld+json">
 {{"@context":"https://schema.org","@type":"Service","name":"{name}",
@@ -339,8 +339,10 @@ def _actions(url):
 
 def build_news():
     """Įrašo naujausius Facebook įrašus iš assets/news.json į index.html.
-    Atnaujinimas: apify/facebook-posts-scraper -> assets/news.json -> python3 gen.py.
+    Atnaujinimas automatinis: tools/fb_sync.py (GitHub Actions kas 3 val.) papildo
+    assets/news.json ir kviečia šią funkciją.
     Tinka bet koks įrašo tipas: su video, su nuotrauka arba vien tekstas."""
+    import html
     import json
     with open("assets/news.json", encoding="utf-8") as f:
         posts = json.load(f)
@@ -386,7 +388,7 @@ def build_news():
             '          </p>\n'
             '        </article>' % (
                 ' data-delay="%d"' % (i * 70) if i else '',
-                p["date"], p["label"], p["text"], media, _actions(p["url"])))
+                p["date"], p["label"], html.escape(p["text"], quote=False), media, _actions(p["url"])))
     block = "<!-- NEWS:START -->\n" + "\n".join(cards) + "\n<!-- NEWS:END -->"
     with open("index.html", encoding="utf-8") as f:
         html = f.read()

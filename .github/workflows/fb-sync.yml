@@ -1,0 +1,51 @@
+# Naujienų skiltis atsinaujina pati: kas 3 val. tikrina facebook.com/TSPstatyba,
+# radus naują įrašą įdeda jį į svetainę (tools/fb_sync.py), commit'ina ir push'ina,
+# o Vercel iškart perdiegia svetainę.
+name: Facebook naujienos
+
+on:
+  schedule:
+    - cron: "23 */3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: fb-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Įrankiai
+        run: |
+          pip install --quiet --disable-pip-version-check pillow
+          command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+
+      - name: Tikrinti Facebook
+        run: python3 tools/fb_sync.py
+
+      - name: Įkelti naują įrašą
+        run: |
+          if [ -z "$(git status --porcelain -- index.html assets/news.json img video)" ]; then
+            echo "Naujų įrašų nėra."
+            exit 0
+          fi
+          git config user.name "evolviainfo-eng"
+          git config user.email "272514210+evolviainfo-eng@users.noreply.github.com"
+          git add -A -- index.html assets/news.json img video
+          git commit -m "Naujienos: naujas Facebook įrašas"
+          git push
+
+      # GitHub išjungia suplanuotus workflow po 60 d. be repo veiklos; tai laiko jį įjungtą
+      - name: Neleisti išsijungti
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow enable fb-sync.yml --repo "$GITHUB_REPOSITORY" || true

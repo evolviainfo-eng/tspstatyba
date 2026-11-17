@@ -579,4 +579,7 @@ select.f__field{appearance:none;-webkit-appearance:none;cursor:pointer}
 .post__actions svg{flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.8;
   stroke-linejoin:round;stroke-linecap:round}
 @media (hover:hover) and (pointer:fine){.post__actions a:hover{background:var(--bg-alt);color:var(--tx)}}
+@media (max-width:480px){.post__actions{grid-template-columns:repeat(3,auto);justify-content:space-between}
+  .post__actions a{padding:0 2px;gap:6px}}
 @media (max-width:360px){.post__actions a{font-size:13px;gap:5px}}
+@media (max-width:340px){.post__actions a{font-size:12px;gap:4px;padding:0}.post__actions svg{width:16px;height:16px}}
