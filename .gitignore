@@ -7,3 +7,4 @@ fs-server.js
 tools-verify-fit.js
 PLAN.md
 *.log
+.fb-state

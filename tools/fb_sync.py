@@ -4,14 +4,15 @@
 Viešas puslapis be prisijungimo atiduoda naujausią įrašą (tekstą, datą, nuorodą,
 nuotrauką arba reel'o mp4). Jei jo dar nėra assets/news.json, skriptas:
   1. paruošia mediją: nuotrauka -> img/news-<id>-{700,1000,1400}.webp (3:2),
-     video -> paskutinės 10 s, 720x480 H.264 video/news-<id>.mp4 + poster;
+     video -> detaliausias 10 s langas, 720x480 H.264 video/news-<id>.mp4 + poster;
   2. įdeda įrašą į news.json viršų ir palieka 3 naujausius;
   3. ištrina iškritusių įrašų failus;
   4. perrašo index.html naujienų bloką (gen.build_news).
 
 Paleidžia GitHub Actions (.github/workflows/fb-sync.yml) kas 3 val.
-Išėjimo kodai: 0 = viskas gerai (su nauju įrašu arba be), 1 = FB nieko neatidavė.
-Reikia: python3, Pillow, ffmpeg (tik video įrašams).
+Išėjimo kodai: 0 = viskas gerai (su nauju įrašu arba be, arba FB trumpam užsidarė),
+1 = FB neatidavė įrašų ilgiau nei GRACE_H valandų (tada GitHub siunčia laišką).
+Reikia: python3, Pillow, ffmpeg (tik video įrašams; GitHub'e diegiamas tik tada).
 """
 import datetime as dt
 import glob
@@ -19,6 +20,7 @@ import html as ihtml
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -45,11 +47,30 @@ EMOJI = re.compile("[\U0001F000-\U0001FAFF☀-➿⌀-⏿⬀-⯿"
                    "︎️‍⃣]")
 
 
-def get(url, binary=False):
+# FB kartais iš GitHub serverio IP atiduoda prisijungimo sieną; kitas bandymas
+# po minutės su kitokiomis antraštėmis paprastai praeina
+HEADER_VARIANTS = (HEADERS, {
+    "User-Agent": ("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                   "(KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36"),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Site": "none",
+    "Sec-Fetch-User": "?1",
+})
+WAITS = (0, 30, 60, 90)
+# sėkmingo FB nuskaitymo laikas; GitHub'e išsaugomas per actions/cache
+STATE = os.path.join(ROOT, ".fb-state")
+GRACE_H = 48
+
+
+def get(url, binary=False, headers=None):
     last = None
     for attempt in range(3):
         try:
-            req = urllib.request.Request(url, headers=HEADERS)
+            req = urllib.request.Request(url, headers=headers or HEADERS)
             with urllib.request.urlopen(req, timeout=60) as r:
                 data = r.read()
             return data if binary else data.decode("utf-8", "replace")
@@ -174,7 +195,18 @@ def frame_scores(raw, tmp):
     return scores
 
 
+def ensure_ffmpeg():
+    """GitHub runneryje ffmpeg diegiamas tik kai tikrai atsiranda naujas video."""
+    if shutil.which("ffmpeg") and shutil.which("ffprobe"):
+        return
+    if not os.environ.get("GITHUB_ACTIONS"):
+        sys.exit("reikia ffmpeg ir ffprobe")
+    subprocess.run("sudo apt-get update -qq && sudo apt-get install -y -qq "
+                   "--no-install-recommends ffmpeg", shell=True, check=True)
+
+
 def make_video(url, base, tmp):
+    ensure_ffmpeg()
     raw = os.path.join(tmp, "raw.mp4")
     with open(raw, "wb") as f:
         f.write(get(url, binary=True))
@@ -223,12 +255,57 @@ def known(posts, pid):
     return any(p.get("id") == pid or p["url"].rstrip("/").endswith(pid) for p in posts)
 
 
+def describe(page):
+    title = re.search(r"<title[^>]*>(.*?)</title>", page or "", re.S)
+    return "%d B, title=%r, post_id=%d" % (
+        len(page or ""), (title.group(1).strip()[:60] if title else None),
+        (page or "").count('"post_id"'))
+
+
+def fetch_stories():
+    for i, wait in enumerate(WAITS):
+        time.sleep(wait)
+        try:
+            page = get(PAGE, headers=HEADER_VARIANTS[i % len(HEADER_VARIANTS)])
+        except Exception as e:  # noqa: BLE001
+            print("bandymas %d: klaida %s" % (i + 1, e))
+            continue
+        stories = parse_stories(page)
+        if stories:
+            return stories
+        print("bandymas %d: įrašų nėra (%s)" % (i + 1, describe(page)))
+    return []
+
+
+def read_state():
+    try:
+        with open(STATE) as f:
+            return float(f.read().strip())
+    except (OSError, ValueError):
+        return None
+
+
+def write_state(ts):
+    with open(STATE, "w") as f:
+        f.write("%d\n" % ts)
+
+
 def main():
-    page = get(PAGE)
-    stories = parse_stories(page)
+    stories = fetch_stories()
+    now = time.time()
     if not stories:
-        print("FB neatidavė nė vieno įrašo (login siena ar pasikeitęs HTML).")
+        last_ok = read_state()
+        if last_ok is None:  # pirmas kartas be būsenos: grace skaičiuojamas nuo dabar
+            write_state(now)
+            last_ok = now
+        hours = (now - last_ok) / 3600
+        if hours < GRACE_H:
+            # ::warning:: matosi GitHub'e, bet laiško nesiunčia; kitas paleidimas bandys vėl
+            print("::warning::FB šįkart neatidavė įrašų; paskutinis sėkmingas prieš %.0f val." % hours)
+            return 0
+        print("FB neatidavė įrašų jau %.0f val. (login siena ar pasikeitęs HTML)." % hours)
         return 1
+    write_state(now)
     with open(NEWS, encoding="utf-8") as f:
         posts = json.load(f)
 

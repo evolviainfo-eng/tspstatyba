@@ -23,13 +23,28 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # paskutinio sėkmingo FB nuskaitymo laikas: trumpas FB užsidarymas nesiunčia
+      # klaidos laiško, laiškas ateina tik jei FB neatsako ilgiau nei 48 val.
+      - name: Būsena
+        uses: actions/cache/restore@v4
+        with:
+          path: .fb-state
+          key: fb-state-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: fb-state-
+
+      # ffmpeg skriptas įsidiegia pats, tik kai atsiranda naujas video įrašas
       - name: Įrankiai
-        run: |
-          pip install --quiet --disable-pip-version-check pillow
-          command -v ffmpeg >/dev/null || (sudo apt-get update -qq && sudo apt-get install -y -qq ffmpeg)
+        run: pip install --quiet --disable-pip-version-check pillow
 
       - name: Tikrinti Facebook
         run: python3 tools/fb_sync.py
+
+      - name: Išsaugoti būseną
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .fb-state
+          key: fb-state-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Įkelti naują įrašą
         run: |
